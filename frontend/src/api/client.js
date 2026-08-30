@@ -4,7 +4,7 @@ import axios from 'axios';
 // ("proxy" in package.json) forwards to http://localhost:5200.
 // Set REACT_APP_API_URL to target a deployed backend directly.
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || '',
+  baseURL: process.env.APP_API_URL || '',
   timeout: 15000,
 });
 
