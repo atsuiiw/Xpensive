@@ -18,7 +18,7 @@ import router from './router/router.js';
 
 app.listen(PORT,HOST);
 
-app.use(router);
+app.use('/api',router);
 
 con.connect().then(async () => {
     console.log("Connected at " + PORT);

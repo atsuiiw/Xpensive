@@ -1,10 +1,13 @@
 import axios from 'axios';
+import { API_URI } from '../config/api';
 
-// Empty baseURL = relative requests, which the CRA dev proxy
-// ("proxy" in package.json) forwards to http://localhost:5200.
-// Set REACT_APP_API_URL to target a deployed backend directly.
+// API_URI is resolved from the API_URI env var (see scripts/gen-api-config.mjs
+// and .env / .env.production). A relative '/api' hits the backend router
+// (mounted at /api in backend/src/index.js) via the CRA dev proxy ("proxy" in
+// package.json), which forwards to http://localhost:5200. Set API_URI to a full
+// URL to target a deployed backend directly.
 const api = axios.create({
-  baseURL: process.env.APP_API_URL || '',
+  baseURL: API_URI || '/api',
   timeout: 15000,
 });
 
