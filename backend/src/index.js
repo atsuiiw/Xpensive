@@ -5,7 +5,6 @@ import cors from 'cors';
 // dotenv
 dotenv.config();
 const PORT = process.env.PORT;
-const HOST = process.env.HOST;
 const FRONTEND_URL = process.env.FRONTEND_URL;
 
 // initialize app variable
@@ -27,7 +26,6 @@ app.get('/', (req,res) => {
 })
 
 app.use('/api',router);
-
 app.listen(PORT, () => {
   con.connect().then(async () => {
     console.log("Connected at " + PORT);

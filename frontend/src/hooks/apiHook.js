@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 export const api = axios.create({
-  baseURL: process.env.API_URI,
+  baseURL: process.env.REACT_APP_API,
 });
 
 export const PERIODS = {
