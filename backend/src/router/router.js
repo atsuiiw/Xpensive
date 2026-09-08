@@ -6,9 +6,10 @@ import con from '../db/db.js';
 // Get Add Data
 router.get('/getAllData', async (req,res) => {
     try {
-        const sql_query = 'SELECT * FROM "post"';
+        const sql_query = 'SELECT id, name, description, expense, income, tag, to_char(date, \'YYYY-MM-DD\') AS date FROM "post"';
         const result = await con.query(sql_query);
         res.status(200).json(result.rows);
+        console.log(result.rows);
     }
     catch (err){
         res.status(404).json(err);
@@ -25,7 +26,8 @@ router.get('/getDataFromRange', async(req,res) => {
         }
 
         const queryText = `
-            SELECT * FROM post
+            SELECT id, name, description, expense, income, tag, to_char(date, 'YYYY-MM-DD') AS date
+            FROM post
             WHERE date >= $1 AND date <= $2
             ORDER BY date ASC
         `;
@@ -45,13 +47,13 @@ router.get('/getTag', async (req,res) => {
     try {
         const { tag } = req.query;
 
-        let queryText = `SELECT * FROM post`
+        let queryText = `SELECT id, name, description, expense, income, tag, to_char(date, 'YYYY-MM-DD') AS date FROM post`
         let queryValues = [];
         if (tag) {
             if (!Array.isArray(tag)) {
                 tag = [tag];
             }
-            queryText = `SELECT * FROM post WHERE tag = ANY($1)`;
+            queryText = `SELECT id, name, description, expense, income, tag, to_char(date, 'YYYY-MM-DD') AS date FROM post WHERE tag = ANY($1)`;
             queryValues = [tag]; 
         }
         

@@ -2,59 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    @apply antialiased;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
-  body {
-    margin: 0;
-    background-color: theme('colors.canvas');
-    color: #fff;
-    font-family: theme('fontFamily.sans');
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow-x: hidden;
-  }
-
-  ::selection {
-    background: rgba(52, 211, 153, 0.35);
-  }
-
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.14);
-    border-radius: 999px;
-    border: 3px solid transparent;
-    background-clip: content-box;
-  }
-
-  input[type='number']::-webkit-outer-spin-button,
-  input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input[type='number'] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-  }
+/*
+ * Themed design tokens (CSS variables).
+ *
+ * Components reference ONLY semantic Tailwind tokens (bg-card, text-muted,
+ * border-border, ...) which resolve to these variables. To add a new theme,
+ * drop a new selector block below (e.g. `.high-contrast { ... }`) defining
+ * the same variables — the entire page re-themes with no component changes.
+ *
+ * Income / expense / accent are brand colors and stay constant across themes.
+ */
+:root {
+  /* light */
+  --c-income: 5 150 105; /* emerald-600 */
+  --c-expense: 220 38 38; /* red-600 */
+  --c-accent: 79 70 229; /* indigo-600 */
+  --c-surface: 248 250 252; /* slate-50 */
+  --c-surface-alt: 241 245 249; /* slate-100 */
+  --c-card: 255 255 255; /* white */
+  --c-control: 241 245 249; /* slate-100 */
+  --c-hover: 248 250 252; /* slate-50 */
+  --c-primary-soft: 238 242 255; /* indigo-50 */
+  --c-text-main: 15 23 42; /* slate-900 */
+  --c-text-muted: 100 116 139; /* slate-500 */
+  --c-text-faint: 148 163 184; /* slate-400 */
+  --c-border: 226 232 240; /* slate-200 */
+  --c-border-strong: 203 213 225; /* slate-300 */
 }
 
-/* Motion is a layer on top of a static layout, never required to read it. */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+.dark {
+  --c-surface: 2 6 23; /* slate-950 */
+  --c-surface-alt: 15 23 42; /* slate-900 */
+  --c-card: 30 41 59; /* slate-800 */
+  --c-control: 51 65 85; /* slate-700 */
+  --c-hover: 51 65 85; /* slate-700 */
+  --c-primary-soft: 30 27 75; /* indigo-950-ish */
+  --c-text-main: 241 245 249; /* slate-100 */
+  --c-text-muted: 148 163 184; /* slate-400 */
+  --c-text-faint: 100 116 139; /* slate-500 */
+  --c-border: 51 65 85; /* slate-700 */
+  --c-border-strong: 71 85 105; /* slate-600 */
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(var(--c-surface) / 1);
+  color: rgb(var(--c-text-main) / 1);
+}
+
+@layer base {
+  * {
+    @apply border-[color:rgb(var(--c-border))];
   }
 }
