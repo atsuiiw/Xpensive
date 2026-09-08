@@ -22,10 +22,14 @@ import con from './db/db.js';
 // import router
 import router from './router/router.js';
 
-app.listen(PORT,HOST);
+app.get('/', (req,res) => {
+  return res.send("Server is Ready");
+})
 
 app.use('/api',router);
 
-con.connect().then(async () => {
+app.listen(PORT, () => {
+  con.connect().then(async () => {
     console.log("Connected at " + PORT);
-})
+  })
+});
